@@ -71,14 +71,19 @@ class App extends React.Component {
 
   startCountDown() {
     this.intervalHandle = setInterval(this.tick, 1000);
-    let time = this.state.value;
-    this.secondsRemaining = time * 60;    
+    let time = this.state.value * 60;
+    if (this.state.seconds > 0) {
+    this.secondsRemaining = time + this.state.seconds;   
+    } else {
+      this.secondsRemaining = time * 60;
+    } 
   } 
   
 
   
   onPlayStopTimer() {
     clearInterval(this.intervalHandle)
+    console.log(this.state.seconds)
   }
 
   onResetTimer() {
